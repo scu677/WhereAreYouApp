@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">WhereAreYou</string>
+    <string name="title_activity_maps">Where Are You</string>
+    <string name="contact_prompt">Choose contact </string>
+    <string name="name1">Samson</string>
+    <string name="name2">Adrian</string>
+</resources>
