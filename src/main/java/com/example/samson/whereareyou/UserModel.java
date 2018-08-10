@@ -7,30 +7,31 @@ package com.example.samson.whereareyou;
 public class UserModel {
     int id;
     String name;
-    String username;
+    String password;
     String phone;
     String email;
-
 
     public UserModel(){
 
     }
 
-    //setters
+    //Setters
     public void setId(int id){
         this.id = id;
     }
     public void setName(String name){
         this.name = name;
     }
+    public void setPassword(String password){this.password = password;}
+    public void setEmail(String Email){this.email = email;}
 
-    public int getId(){
-
-        return this.id;
-    }
+    //Getters
+    public int getId(){ return this.id; }
     public String getName(){
         return this.name;
     }
+    public String getPassword(){return this.password;}
+    public String getEmail(){return this.email;}
 
 
     public void getUsers(){}

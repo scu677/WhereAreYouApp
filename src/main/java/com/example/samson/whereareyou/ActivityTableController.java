@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,8 @@ import java.util.List;
  */
 
 public class ActivityTableController extends DatabaseHandler {
+    private List<ActivityModel> activities;
+
     public ActivityTableController(Context context) {
         super(context);
     }
@@ -22,14 +25,14 @@ public class ActivityTableController extends DatabaseHandler {
         ContentValues values = new ContentValues();
         values.put("name", activityModel.name);
         values.put("contact", activityModel.contact);
-        values.put("startDate", activityModel.startDate);
-        values.put("endDate", activityModel.endDate);
+        values.put("startDate", String.valueOf(activityModel.startDate));
+        values.put("endDate", String.valueOf(activityModel.endDate));
         SQLiteDatabase db = this.getWritableDatabase();
-
         boolean createSuccessful = db.insert("activities",null,values) > 0 ;
         db.close();
         return createSuccessful;
     }
+
 
     public List<ActivityModel> getActivities() {
 
@@ -45,16 +48,17 @@ public class ActivityTableController extends DatabaseHandler {
 
                 int id = Integer.parseInt(cursor.getString(cursor.getColumnIndex("id")));
                 String activityName = cursor.getString(cursor.getColumnIndex("name"));
-                int activityContact = Integer.parseInt(cursor.getString(cursor.getColumnIndex("contact")));
-               String activityStart = cursor.getString(cursor.getColumnIndex("startDate"));
-               String activityEnd = cursor.getString(cursor.getColumnIndex("startDate"));
+                //int activityContact = Integer.parseInt(cursor.getString(cursor.getColumnIndex("contact")));
+                String activityContact = cursor.getString(cursor.getColumnIndex("contact"));
+                Timestamp activityStart = Timestamp.valueOf(cursor.getString(cursor.getColumnIndex("startDate")));
+                 Timestamp activityEnd = Timestamp.valueOf(cursor.getString(cursor.getColumnIndex("startDate")));
 
                 ActivityModel objectActivity = new ActivityModel();
                 objectActivity.id = id;
                 objectActivity.name = activityName;
                 objectActivity.contact = activityContact;
                 objectActivity.startDate = activityStart;
-               objectActivity.endDate = activityEnd;
+                objectActivity.endDate = activityEnd;
 
                 activityList.add(objectActivity);
 
@@ -66,8 +70,6 @@ public class ActivityTableController extends DatabaseHandler {
 
         return activityList;
     }
-
-
 
 
 

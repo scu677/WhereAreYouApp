@@ -4,8 +4,9 @@ package com.example.samson.whereareyou;
  * Created by Samson on 19/07/2018.
  */
 
-
+import com.example.samson.whereareyou.ActivityModel;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.design.widget.NavigationView;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -14,8 +15,18 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import java.sql.Timestamp;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
 
     private DrawerLayout myDrawerLayout;
@@ -30,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
-
         myDrawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
@@ -42,13 +52,10 @@ public class MainActivity extends AppCompatActivity {
                         myDrawerLayout.closeDrawers();
                         return true;
                     case R.id.nav_activity:
-
                         Intent gotoActivity1 = new Intent(MainActivity.this, MapActivity.class);
                         startActivity(gotoActivity1);
-                        //myDrawerLayout.closeDrawers();
                         return true;
                     case R.id.nav_create:
-
                         //Intent gotoActivity = new Intent(MainActivity.this, MapActivity.class);
                         //startActivity(gotoActivity);
                        myDrawerLayout.closeDrawers();
@@ -62,33 +69,53 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //addItemsOnSpinner1();
-       // createActivityButton();
-        //readRecords();
+        // createActivityButton();
+        //loop through the buttons
+        for(int i = 0; i < btn.length; i++){
+            btn[i] = (Button) findViewById(btn_id[i]);
+            btn[i].setOnClickListener(this);
+        }
     }
 
-   /* public void readRecords() {
 
+    //home menu selection
+    Button[] btn = new Button[3];
+    private int[] btn_id = new int[]{R.id.btnActivity, R.id.btnCreateActivity, R.id.btnContact};
+    public void onClick(View v){
+        switch (v.getId()){
+            case R.id.btnActivity:
+                readRecords();
+                break;
+            case R.id.btnCreateActivity:
+                Intent gotoActivity1 = new Intent(MainActivity.this, MapActivity.class);
+                startActivity(gotoActivity1);
+                break;
+            case R.id.btnContact:
+                break;
+        }
+
+    }
+
+   public void readRecords() {
+    //ActivityModel activityModel = new ActivityModel();
+    // activityModel.getActivities();
         LinearLayout linearLayoutRecords = (LinearLayout) findViewById(R.id.linearLayoutRecords);
         linearLayoutRecords.removeAllViews();
 
-        List<ActivityModel> students = new ActivityTableController(this).read();
+        List<ActivityModel> activity = new ActivityTableController(this).getActivities();
 
-        if (students.size() > 0) {
+        if (activity.size() > 0) {
 
-            for (ActivityModel obj : students) {
+            for (ActivityModel obj : activity) {
 
                 int id = obj.id;
                 String activityName = obj.name;
-
-
                 String textViewContents = activityName;
-
-                TextView textViewStudentItem= new TextView(this);
-                textViewStudentItem.setPadding(0, 10, 0, 10);
-                textViewStudentItem.setText(textViewContents);
-                textViewStudentItem.setTag(Integer.toString(id));
-
-                linearLayoutRecords.addView(textViewStudentItem);
+                TextView textActivityItem = new TextView(this);
+                textActivityItem.setPadding(0, 10, 0, 10);
+                textActivityItem.setText(textViewContents);
+                textActivityItem.setTag(Integer.toString(id));
+                linearLayoutRecords.addView(textActivityItem);
             }
 
         }
@@ -98,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
             TextView locationItem = new TextView(this);
             locationItem.setPadding(8, 8, 8, 8);
             locationItem.setText("No records yet.");
-
             linearLayoutRecords.addView(locationItem);
         }
 
@@ -120,36 +146,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     // get the selected dropdown list value
-    /*public void createActivityButton() {
-        // spinner1 = (Spinner) findViewById(R.id.spinner1);
+    public void createActivityButton() {
+        Spinner spinner1 = (Spinner) findViewById(R.id.editContact);
         Button btnCreate =  findViewById(R.id.buttonCreateActivity);
         btnCreate.setOnClickListener(new View.OnClickListener() {
-
             //@Override
             public void onClick(View v) {
-                EditText editActivityName = findViewById(R.id.editActivityName);
-                EditText editContact = findViewById(R.id.editContacts);
-                EditText editStartDateTime = findViewById(R.id.editStartDateTime);
-                EditText editEndDateTime = findViewById(R.id.editEndDateTime);
-                String ActivityName = editActivityName.getText().toString();
-                String ActivityContact = editContact.getText().toString();
-                String ActivityStart = editStartDateTime.getText().toString();
-                String ActivityEnd = editEndDateTime.getText().toString();
 
-                ActivityModel activityObject = new ActivityModel();
-
-                activityObject.name = ActivityName;
-                activityObject.contact = ActivityContact;
-                activityObject.startDate = ActivityStart;
-                activityObject.endDate = ActivityEnd;
-
-                boolean createSuccessful = new ActivityTableController(MainActivity.this).createActivity(activityObject);
-
-                if(createSuccessful){
-                    Toast.makeText(MainActivity.this, "Activity was created successfully", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(MainActivity.this, "Unable to create Activity", Toast.LENGTH_SHORT).show();
-                }
                 //Toast.makeText(MapActivity.this,
                 //      "OnClickListener : " +
                 //   "\nSpinner 1 : "+ String.valueOf(spinner1.getSelectedItem()),
@@ -157,9 +160,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-    }*/
-
-
+    }
 
 
     public boolean onOptionsItemSelected(MenuItem item){

@@ -42,7 +42,7 @@
         <requestFocus/>
     </EditText>
 
-    <Spinner
+   <!-- <Spinner
         android:id="@+id/editContact"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -50,7 +50,19 @@
         android:layout_below="@+id/editActivityName"
         android:prompt="@string/contact_prompt"
         android:entries="@array/contactArray"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"/>-->
+
+
+            <EditText
+                android:id="@+id/editContact"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/editActivityName"
+                android:hint="contact"
+                android:inputType="textPersonName"
+                android:singleLine="false"
+                android:layout_marginTop="10dp"/>
 
     <EditText
         android:id="@+id/editStartDateTime"

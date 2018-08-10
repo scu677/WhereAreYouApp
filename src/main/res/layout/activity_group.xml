@@ -28,42 +28,56 @@
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_columnWeight="1"
-            android:background="@android:color/transparent"
+            app:cardBackgroundColor="@android:color/white"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="50dp">
 
-            <TextView
-                android:id="@+id/myActivities"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="ACTIVITIES"
+            <Button
+                android:id="@+id/btnActivity"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp" />
+                android:text="ACTIVITY"
+                android:textSize="24dp"
+                android:background="@android:color/transparent"
+                style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"/>
 
         </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/linearLayoutRecords"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+            </LinearLayout>
+
 
         <android.support.v7.widget.CardView
             android:id="@+id/cardCreateActivity"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_columnWeight="1"
-            android:background="@android:color/transparent"
+            app:cardBackgroundColor="@android:color/white"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="5dp">
 
-            <TextView
-                android:id="@+id/createActivity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="CREATE ACTIVITY"
+            <Button
+                android:id="@+id/btnCreateActivity"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp" />
+                android:text="CREATE ACTIVITY"
+                android:textSize="24dp"
+                android:background="@android:color/transparent"
+                style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"/>
 
         </android.support.v7.widget.CardView>
 
@@ -73,26 +87,28 @@
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_columnWeight="1"
-            android:background="@android:color/transparent"
+            app:cardBackgroundColor="@android:color/white"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="5dp">
 
-            <TextView
-                android:id="@+id/myContact"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="MY CONTACTS"
+            <Button
+                android:id="@+id/btnContact"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp" />
+                android:text="CONTACTS"
+                android:textSize="24dp"
+                android:background="@android:color/transparent"
+                style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"/>
 
         </android.support.v7.widget.CardView>
 
     </GridLayout>
     </ScrollView>
-
 
 
     <android.support.design.widget.NavigationView

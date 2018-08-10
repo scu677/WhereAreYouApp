@@ -11,7 +11,7 @@ public class ContactModel {
 
 
     public ContactModel(){
-        
+
     }
 
     public void setId(int id){
