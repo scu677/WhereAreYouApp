@@ -1,6 +1,7 @@
 package com.example.samson.whereareyou;
 
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -40,44 +41,36 @@ public class MapActivity extends AppCompatActivity {
        createActivityButton();
     }
 
-
-
     public void createActivityButton() {
         Button btnCreate =  findViewById(R.id.btnCreateActivity);
         btnCreate.setOnClickListener(new View.OnClickListener() {
             //@Override
             public void onClick(View v) {
                 //createActivity();
-                EditText editActivityName = findViewById(R.id.editActivityName);
-                //Spinner editContact = findViewById(R.id.editContact);
-                EditText editContact = findViewById(R.id.editContact);
-                EditText editStartDateTime = findViewById(R.id.editStartDateTime);
-                EditText editEndDateTime = findViewById(R.id.editEndDateTime);
 
+                EditText editActivityName = findViewById(R.id.editActivityName);
+                EditText editContact = findViewById(R.id.editContact);
+                //EditText editStartDateTime = findViewById(R.id.editStartDateTime);
+                //EditText editEndDateTime = findViewById(R.id.editEndDateTime);
 
                 String ActivityName = editActivityName.getText().toString();
-                //int ActivityContact = Integer.parseInt(editContact.toString());
                 String ActivityContact = editContact.getText().toString();
-                Timestamp ActivityStart = Timestamp.valueOf(editStartDateTime.getText().toString());
-                Timestamp ActivityEnd = Timestamp.valueOf(editEndDateTime.getText().toString());
+               // Timestamp ActivityStart = Timestamp.valueOf(editStartDateTime.getText().toString());
+                //Timestamp ActivityEnd = Timestamp.valueOf(editEndDateTime.getText().toString());
 
                 ActivityModel activityObject = new ActivityModel();
                 activityObject.name = ActivityName;
                 activityObject.contact = ActivityContact;
-                activityObject.startDate = ActivityStart;
-                activityObject.endDate = ActivityEnd;
+               // activityObject.startDate = ActivityStart;
+                //activityObject.endDate = ActivityEnd;
 
                 boolean createSuccessful = new ActivityTableController(MapActivity.this).createActivity(activityObject);
-
                 if(createSuccessful){
                     Toast.makeText(MapActivity.this, "Activity was created successfully", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(MapActivity.this, "Unable to create Activity", Toast.LENGTH_SHORT).show();
                 }
-                //Toast.makeText(MapActivity.this,
-                //      "OnClickListener : " +
-                //   "\nSpinner 1 : "+ String.valueOf(spinner1.getSelectedItem()),
-                //    Toast.LENGTH_SHORT).show();
+
             }
 
         });

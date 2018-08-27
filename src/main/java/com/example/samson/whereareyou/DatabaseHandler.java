@@ -26,7 +26,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    protected static final String DATABASE_NAME ="WhereAreYou";
+    protected static final String DATABASE_NAME ="WhereAreYou.db";
+    public static final String  TABLE_USERS = "users";
+    public static final String  TABLE_ACTIVITIES = "activities";
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_NAME = "name";
+    public static final String COLUMN_EMAIL = "email";
+    public static final String COLUMN_PHONE = "phone";
+    public static final String COLUMN_PASSWORD = "password";
+
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -34,18 +42,28 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = " CREATE TABLE activities " + " (id INTEGER PRIMARY KEY AUTOINCREMENT, " + " name TEXT, " + " contact TEXT, " + " startDate TEXT, " + " endDate TEXT) ";
-        db.execSQL(sql);
 
+        /*String create_user = " CREATE TABLE " + TABLE_USERS +  " ("+
+                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_NAME + " TEXT, " +
+                COLUMN_EMAIL + "TEXT, " +
+                COLUMN_PASSWORD + "TEXT," +
+                COLUMN_PHONE + "TEXT" +") ";*/
+        String create_user = " CREATE TABLE users " + " (id INTEGER PRIMARY KEY AUTOINCREMENT, " + " name TEXT, " + " email TEXT," + "password TEXT, " + " phone TEXT) ";
+
+        String create_activity = " CREATE TABLE activities " + " (id INTEGER PRIMARY KEY AUTOINCREMENT, " + " name TEXT, " + " contact TEXT) ";
+        db.execSQL(create_user);
+        db.execSQL(create_activity);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String sql = "DROP TABLE IF EXISTS activities";
-        db.execSQL(sql);
+        String update_activity = "DROP TABLE IF EXISTS activities";
+        db.execSQL(update_activity);
+        //db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS );
+        String update_user = "DROP TABLE IF EXISTS users";
+        db.execSQL(update_user);
         onCreate(db);
-
     }
-
 
 }

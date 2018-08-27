@@ -5,4 +5,6 @@
     <string name="name1">Samson</string>
     <string name="name2">Adrian</string>
     <string name="where_are_you">Where Are You</string>
+    <string name="error_valid_email_password">Wrong input!</string>
+    <string name="error_message_email">Enter valid email</string>
 </resources>

@@ -21,48 +21,28 @@ import android.widget.Toast;
  */
 
 public class ActivityModel {
-    int id;
-    //int user;
-    String contact;
-    String name;
-    Timestamp startDate;
-    Timestamp endDate;
+     int id;
+     String contact;
+     String name;
+     //Timestamp startDate;
+     //Timestamp endDate;
 
     private SQLiteDatabase writableDatabase;
     //constructor
-    public ActivityModel() {
-
-   }
+    public ActivityModel() {}
     //Setters
-    public void setId(int id){
-        this.id = id;
-    }
-    public void setName(String name){
-        this.name = name;
-     }
-   // public void setUser(int user){ this.user = user; }
-    public void setContact(String contact){this.contact = contact; }
-    public void setStartDate(Timestamp startDate){ this.startDate = startDate; }
-    public void setEndDate(Timestamp endDate){ this.endDate = endDate; }
+    //public void setId(int id){this.id = id;}
+    //public void setName(String name){this.name = name;}
+   // public void setContact(String contact){this.contact = contact; }
+   // public void setStartDate(Timestamp startDate){ this.startDate = startDate; }
+   // public void setEndDate(Timestamp endDate){ this.endDate = endDate; }
 
     //Getters
-    public int getId(){return this.id;}
-    public String getName(){return this.name;}
-    public String getContact(){return this.contact;}
-    public Timestamp getStartDate(){return this.startDate;}
-    public Timestamp getEndDate(){return this.endDate;}
+   // public int getId(){return this.id;}
+   // public String getName(){return this.name;}
+   // public String getContact(){return this.contact;}
+   // public Timestamp getStartDate(){return this.startDate;}
+    //public Timestamp getEndDate(){return this.endDate;}
 
-
-    //get a selected activities
-    public int getActivityFor(int id){
-        return 0;
-    }
-
-    //get list of all activities
-    public void getActivityFor(){}
-
-    public void deleteActivity(){}
-
-    public void updateAcivity(){}
 
 }

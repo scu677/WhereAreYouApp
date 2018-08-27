@@ -26,20 +26,19 @@ import android.widget.Toast;
 import java.sql.Timestamp;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-
+public class  MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private DrawerLayout myDrawerLayout;
     private MapActivity map_activity;
-    //private Spinner spinner1;
-    //private Button btnCreate;
-
+    DatabaseHandler mydb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
+
+        mydb = new DatabaseHandler(this);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
         myDrawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -48,19 +47,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public boolean onNavigationItemSelected(MenuItem item) {
                 item.setCheckable(true);
                 switch (item.getItemId()) {
-                    case R.id.nav_contact:
+                    case R.id.nav_profile:
+                        Intent createAccount = new Intent(MainActivity.this, Registration.class);
+                        startActivity(createAccount);
                         myDrawerLayout.closeDrawers();
                         return true;
-                    case R.id.nav_activity:
+                    case R.id.nav_contact:
                         Intent gotoActivity1 = new Intent(MainActivity.this, MapActivity.class);
                         startActivity(gotoActivity1);
                         return true;
-                    case R.id.nav_create:
-                        //Intent gotoActivity = new Intent(MainActivity.this, MapActivity.class);
-                        //startActivity(gotoActivity);
-                       myDrawerLayout.closeDrawers();
-                        return true;
-                    case R.id.nav_logout:
+                    case R.id.nav_login:
+                        Intent gotoLogin = new Intent(MainActivity.this, Login.class);
+                        startActivity(gotoLogin);
                         myDrawerLayout.closeDrawers();
                         return true;
                 }
@@ -68,15 +66,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        //addItemsOnSpinner1();
-        // createActivityButton();
-        //loop through the buttons
         for(int i = 0; i < btn.length; i++){
             btn[i] = (Button) findViewById(btn_id[i]);
             btn[i].setOnClickListener(this);
         }
-    }
 
+    }
 
     //home menu selection
     Button[] btn = new Button[3];
@@ -97,11 +92,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
    public void readRecords() {
-    //ActivityModel activityModel = new ActivityModel();
-    // activityModel.getActivities();
+
         LinearLayout linearLayoutRecords = (LinearLayout) findViewById(R.id.linearLayoutRecords);
         linearLayoutRecords.removeAllViews();
-
         List<ActivityModel> activity = new ActivityTableController(this).getActivities();
 
         if (activity.size() > 0) {
@@ -127,10 +120,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             locationItem.setText("No records yet.");
             linearLayoutRecords.addView(locationItem);
         }
-
     }
-
-
 
    /*public void addItemsOnSpinner1() {
 
@@ -147,12 +137,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     // get the selected dropdown list value
     public void createActivityButton() {
-        Spinner spinner1 = (Spinner) findViewById(R.id.editContact);
+        //Spinner spinner1 = (Spinner) findViewById(R.id.editContact);
         Button btnCreate =  findViewById(R.id.buttonCreateActivity);
         btnCreate.setOnClickListener(new View.OnClickListener() {
             //@Override
             public void onClick(View v) {
-
                 //Toast.makeText(MapActivity.this,
                 //      "OnClickListener : " +
                 //   "\nSpinner 1 : "+ String.valueOf(spinner1.getSelectedItem()),
@@ -170,7 +159,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (myDrawerLayout.isDrawerOpen(Gravity.START)){
                     myDrawerLayout.closeDrawer(GravityCompat.START);
                 }else{myDrawerLayout.openDrawer(GravityCompat.START);}
-
              return true;
          }
         return super.onOptionsItemSelected(item);
