@@ -1,27 +1,21 @@
-/*
- * Copyright (C) 2018 Samson Ugwuodo
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.example.samson.whereareyou;
-
+/***********************************************************************************\
+ //Copyright (c) 2018, Resource Innovations Inc.                                    |
+ //Created by Samson Ugwuodo on 16/07/2018                                                       |
+ // MainActivity source code                                                        |
+ // Licensed under the Apache License, Version 2.0 (the "License");                 |
+ // you may not use this file except in compliance with the License.                |
+ // You may obtain a copy of the License at                                         |
+ // http://www.apache.org/licenses/LICENSE-2.0                                      |
+ // Unless required by applicable law or agreed to in writing, software             |
+ // distributed under the License is distributed on an "AS IS" BASIS,               |
+ // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.        |
+ // See the License for the specific language governing permissions and             |
+ //limitations under the License.                                                   |
+ \*********************************************************************************/
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-/**
- * Created by Samson on 16/07/2018.
- */
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
@@ -40,6 +34,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    /*
+     * Create new user and activity
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
 
@@ -56,11 +53,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(create_activity);
     }
 
+    /*
+     * Update user if already existing
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String update_activity = "DROP TABLE IF EXISTS activities";
         db.execSQL(update_activity);
-        //db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS );
+
         String update_user = "DROP TABLE IF EXISTS users";
         db.execSQL(update_user);
         onCreate(db);

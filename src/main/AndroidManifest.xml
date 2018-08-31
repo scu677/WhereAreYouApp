@@ -52,17 +52,12 @@
                 android:value=".MainActivity" />
         </activity>
 
-        <activity android:name=".Registration">
-        <meta-data
+        <activity android:name=".Registration"><meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value=".MainActivity" />
-        </activity>
-
-        <activity android:name=".Login">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
+            android:value=".MainActivity" /></activity>
+        <activity android:name=".Login"><meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity" /></activity>
     </application>
 
 </manifest>

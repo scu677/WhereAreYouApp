@@ -1,12 +1,20 @@
 package com.example.samson.whereareyou;
+/***********************************************************************************\
+ //Copyright (c) 2018, Resource Innovations Inc.                                    |
+ //Created by Samson Ugwuodo on 19/07/2018.                                         |
+ // MainActivity source code                                                        |
+ // Licensed under the Apache License, Version 2.0 (the "License");                 |
+ // you may not use this file except in compliance with the License.                |
+ // You may obtain a copy of the License at                                         |
+ // http://www.apache.org/licenses/LICENSE-2.0                                      |
+ // Unless required by applicable law or agreed to in writing, software             |
+ // distributed under the License is distributed on an "AS IS" BASIS,               |
+ // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.        |
+ // See the License for the specific language governing permissions and             |
+ //limitations under the License.                                                   |
+ \*********************************************************************************/
 
-/**
- * Created by Samson on 19/07/2018.
- */
-
-import com.example.samson.whereareyou.ActivityModel;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.design.widget.NavigationView;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -17,13 +25,8 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.sql.Timestamp;
 import java.util.List;
 
 public class  MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -31,13 +34,13 @@ public class  MainActivity extends AppCompatActivity implements View.OnClickList
     private DrawerLayout myDrawerLayout;
     private MapActivity map_activity;
     DatabaseHandler mydb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
-
         mydb = new DatabaseHandler(this);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
         myDrawerLayout = findViewById(R.id.drawer_layout);
@@ -53,8 +56,7 @@ public class  MainActivity extends AppCompatActivity implements View.OnClickList
                         myDrawerLayout.closeDrawers();
                         return true;
                     case R.id.nav_contact:
-                        Intent gotoActivity1 = new Intent(MainActivity.this, MapActivity.class);
-                        startActivity(gotoActivity1);
+                       //Add activity here to create new contacts
                         return true;
                     case R.id.nav_login:
                         Intent gotoLogin = new Intent(MainActivity.this, Login.class);
@@ -73,7 +75,9 @@ public class  MainActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    //home menu selection
+    /*
+     * Main screen menu selection button
+     */
     Button[] btn = new Button[3];
     private int[] btn_id = new int[]{R.id.btnActivity, R.id.btnCreateActivity, R.id.btnContact};
     public void onClick(View v){
@@ -91,6 +95,9 @@ public class  MainActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+   /*
+    * Method for reading the list of created activities
+    */
    public void readRecords() {
 
         LinearLayout linearLayoutRecords = (LinearLayout) findViewById(R.id.linearLayoutRecords);
@@ -122,36 +129,10 @@ public class  MainActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-   /*public void addItemsOnSpinner1() {
 
-        spinner1 = (Spinner) findViewById(R.id.spinner1);
-        List<String> list = new ArrayList<String>();
-        list.add("Samson");
-        list.add("Adrian");
-        list.add("Adam");
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, list);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner1.setAdapter(dataAdapter);
-    }*/
-
-
-    // get the selected dropdown list value
-    public void createActivityButton() {
-        //Spinner spinner1 = (Spinner) findViewById(R.id.editContact);
-        Button btnCreate =  findViewById(R.id.buttonCreateActivity);
-        btnCreate.setOnClickListener(new View.OnClickListener() {
-            //@Override
-            public void onClick(View v) {
-                //Toast.makeText(MapActivity.this,
-                //      "OnClickListener : " +
-                //   "\nSpinner 1 : "+ String.valueOf(spinner1.getSelectedItem()),
-                //    Toast.LENGTH_SHORT).show();
-            }
-
-        });
-    }
-
-
+    /*
+     * Drawer menu control
+     */
     public boolean onOptionsItemSelected(MenuItem item){
 
          switch (item.getItemId()){

@@ -31,16 +31,16 @@ public class ActivityModel {
     //constructor
     public ActivityModel() {}
     //Setters
-    //public void setId(int id){this.id = id;}
-    //public void setName(String name){this.name = name;}
-   // public void setContact(String contact){this.contact = contact; }
-   // public void setStartDate(Timestamp startDate){ this.startDate = startDate; }
+    public void setId(int id){this.id = id;}
+    public void setName(String name){this.name = name;}
+    public void setContact(String contact){this.contact = contact; }
+    //public void setStartDate(Timestamp startDate){ this.startDate = startDate; }
    // public void setEndDate(Timestamp endDate){ this.endDate = endDate; }
 
     //Getters
-   // public int getId(){return this.id;}
-   // public String getName(){return this.name;}
-   // public String getContact(){return this.contact;}
+    public int getId(){return this.id;}
+    public String getName(){return this.name;}
+    public String getContact(){return this.contact;}
    // public Timestamp getStartDate(){return this.startDate;}
     //public Timestamp getEndDate(){return this.endDate;}
 
